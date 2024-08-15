@@ -22,6 +22,8 @@ def datasetCls_all(runOn, ds_name_list, ds_label_list, txt_name, opt_dict):
         对全部数据进行数据集分类
     '''
 
+    print(' ---------- Start Dataset Classification ---------- ')
+
     # 模型准备
     ds_weights_path = runOn['dsCls_weights']
     model = vgg16_bn(4)
@@ -30,12 +32,15 @@ def datasetCls_all(runOn, ds_name_list, ds_label_list, txt_name, opt_dict):
     model.to(DEVICE)
     model.eval()
 
+
     batch_size = opt_dict['batch_size']
 
     # 数据准备
     test_dataset = dsCls_Dataset(runOn, ds_name_list, ds_label_list, txt_name)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
+    print(f'model: {ds_weights_path}')
+    print(f'batch_size: {batch_size}')
     print('Total samples:', len(test_dataset))
 
     # 开始检验
@@ -63,7 +68,7 @@ def datasetCls_all(runOn, ds_name_list, ds_label_list, txt_name, opt_dict):
     print("cm:\n", cm)
     print(f'Dataset Classification accuracy on all dataset: {test_accuracy:.4f}, detail:{correct_num}/{len(test_dataset)}')
 
-
+    
 
 
 

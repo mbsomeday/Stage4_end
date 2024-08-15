@@ -39,12 +39,12 @@ opt_dict = {
     'batch_size': opts.batch_size
 }
 
-print(' ---------- Info Start ----------')
+print(' ---------- Setting Info Start ----------')
 for name in ds_name_list:
     print(name)
 print('txt_name:', txt_name)
 print('Batch_size:', opt_dict['batch_size'])
-print(' ---------- Info End ----------')
+print(' ---------- Setting Info End ----------')
 
 datasetCls_all(runOn, ds_name_list, ds_label_list, txt_name, opt_dict)
 
