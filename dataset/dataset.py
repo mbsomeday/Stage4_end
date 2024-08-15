@@ -21,12 +21,6 @@ class dsCls_Dataset(Dataset):
     def __init__(self, var_opt, ds_name_list, ds_label_list, txt_name):
         self.var_opt = var_opt
         self.ds_name_list = ds_name_list
-        print(' ---------- Dataset Info Start ----------')
-        for name in ds_name_list:
-            print(name)
-        print('txt_name:', txt_name)
-        print(' ---------- Dataset Info End ----------')
-
         self.ds_label_list = ds_label_list
         self.txt_name = txt_name
         self.image_transformer = transforms.Compose([
