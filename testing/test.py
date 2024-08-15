@@ -68,7 +68,7 @@ def datasetCls_all(runOn, ds_name_list, ds_label_list, txt_name, opt_dict):
     print("cm:\n", cm)
     print(f'Dataset Classification accuracy on all dataset: {test_accuracy:.4f}, detail:{correct_num}/{len(test_dataset)}')
 
-    
+
 
 
 

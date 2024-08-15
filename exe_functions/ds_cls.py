@@ -40,6 +40,7 @@ opt_dict = {
 }
 
 print(' ---------- Setting Info Start ----------')
+print('Datasets are: ')
 for name in ds_name_list:
     print(name)
 print('txt_name:', txt_name)
