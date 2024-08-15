@@ -17,7 +17,7 @@ from cv_models import VARS_LOCAL, VARS_CLOUD, DEVICE
 from dataset.dataset import dsCls_Dataset
 
 
-def datasetCls_all(var_opt, ds_name_list, ds_label_list, txt_name):
+def datasetCls_all(var_opt, ds_name_list, ds_label_list, txt_name, opt_dict):
     '''
         对全部数据进行数据集分类
     '''
@@ -30,9 +30,11 @@ def datasetCls_all(var_opt, ds_name_list, ds_label_list, txt_name):
     model.to(DEVICE)
     model.eval()
 
+    batch_size = opt_dict['batch_size']
+
     # 数据准备
     test_dataset = dsCls_Dataset(var_opt, ds_name_list, ds_label_list, txt_name)
-    test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
     # 开始检验
     correct_num = 0
@@ -66,22 +68,26 @@ if __name__ == '__main__':
     parser.add_argument('--ds_name_list', nargs='+', default=['D1', 'D2', 'D3', 'D4'])
     parser.add_argument('--ds_label_list', nargs='+', type=int, default=[0, 1, 2, 3])
     parser.add_argument('--txt_name', type=str, default='test.txt')
+    parser.add_argument('--batch_size', type=int, default=4)
     parser.add_argument('--var_opt', type=str, default='CLOUD')
 
     args = parser.parse_args()
-    arg_dict = args.__dict__
 
-    ds_name_list = arg_dict['ds_name_list']
-    ds_label_list = arg_dict['ds_label_list']
-    txt_name = arg_dict['txt_name']
-    var_opt = arg_dict['var_opt']
+    ds_name_list = args.ds_name_list
+    ds_label_list = args.ds_label_list
+    txt_name = args.txt_name
+    var_opt = args.var_opt
 
     if var_opt == 'CLOUD':
         var_opt = VARS_CLOUD
     else:
         var_opt = VARS_LOCAL
 
-    datasetCls_all(var_opt, ds_name_list, ds_label_list, txt_name)
+    opt_dict = {
+        'batch_size': args.batch_size
+    }
+
+    datasetCls_all(var_opt, ds_name_list, ds_label_list, txt_name, opt_dict)
 
 
 
