@@ -36,6 +36,9 @@ def datasetCls_all(runOn, ds_name_list, ds_label_list, txt_name, opt_dict):
     test_dataset = dsCls_Dataset(runOn, ds_name_list, ds_label_list, txt_name)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
+    print('Total samples:', len(test_dataset))
+    print('Batch_size:', batch_size)
+
     # 开始检验
     correct_num = 0
     y_pred = []
