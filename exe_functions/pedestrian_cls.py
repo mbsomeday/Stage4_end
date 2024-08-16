@@ -5,15 +5,15 @@ curPath = os.path.abspath(os.path.dirname(__file__))
 root_path = os.path.split(curPath)[0]
 sys.path.append(root_path)
 
-from testing.test import datasetCls
+from testing.test import pedestrianCls
 from cv_models import VARS_LOCAL, VARS_CLOUD, DEVICE
 
 
 def get_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--ds_name_list', nargs='+', default=['D1', 'D2', 'D3', 'D4'])
-    parser.add_argument('--ds_label_list', nargs='+', type=int, default=[0, 1, 2, 3])
+    parser.add_argument('--ds_name_list', nargs='+', default=['D1'])
     parser.add_argument('--txt_name', type=str, default='test.txt')
+    parser.add_argument('--model_weights', type=str)
     parser.add_argument('--batch_size', type=int, default=4)
     parser.add_argument('--var_opt', type=str, default='CLOUD')
 
@@ -25,7 +25,7 @@ def get_opt():
 opts = get_opt()
 
 ds_name_list = opts.ds_name_list
-ds_label_list = opts.ds_label_list
+model_weights = opts.model_weights
 txt_name = opts.txt_name
 var_opt = opts.var_opt
 
@@ -46,16 +46,7 @@ print('txt_name:', txt_name)
 print('Batch_size:', opt_dict['batch_size'])
 print(' ---------- Setting Info End ----------')
 
-datasetCls(runOn, ds_name_list, ds_label_list, txt_name, opt_dict)
-
-
-
-
-
-
-
-
-
+pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict)
 
 
 
