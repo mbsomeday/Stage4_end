@@ -10,7 +10,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from cv_models.cycleGAN import get_initGenerator, save_image_tensor
-from cv_models import DEVICE
+from cv_models import DEVICE, VARS_LOCAL, VARS_CLOUD
 from dataset.dataset import pedCls_Dataset
 
 
@@ -96,13 +96,16 @@ def get_opt():
 if __name__ == '__main__':
     opts = get_opt()
 
-    runOn = opts.running_on
+    var_opt = opts.running_on
     gen_model = opts.gen_model
     org_ds_name = opts.org_ds_name
     txt_name = opts.txt_name
     gen_image_save_dir = opts.gen_image_save_dir
 
-    print(gen_model)
+    if var_opt == 'CLOUD':
+        runOn = VARS_CLOUD
+    else:
+        runOn = VARS_LOCAL
 
     gen_biased_image(runOn=runOn, gen_model=gen_model,
                      org_ds_name=org_ds_name, txt_name=txt_name,
