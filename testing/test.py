@@ -63,7 +63,7 @@ def datasetCls(runOn, ds_name_list, ds_label_list, txt_name, opt_dict):
             y_true.extend(labels.cpu().numpy())
 
     test_accuracy = correct_num / len(test_dataset)
-    cm = confusion_matrix(y_true, y_pred, labels=ds_label_list)
+    cm = confusion_matrix(y_true, y_pred)
     bc = balanced_accuracy_score(y_true, y_pred)
 
     print(f'Dataset Classification balanced accuracy: {bc:.4f}, accuracy: {test_accuracy:.4f}, detail:{correct_num}/{len(test_dataset)}')
@@ -114,10 +114,69 @@ def pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict):
 
     test_accuracy = correct_num / len(test_dataset)
     bc = balanced_accuracy_score(y_true, y_pred)
-    cm = confusion_matrix(y_true, y_pred, labels=['0', '1'])
+    cm = confusion_matrix(y_true, y_pred)
 
     print(f'Pedestrian Classification balanced accuracy: {bc:.4f}, accuracy: {test_accuracy:.4f}, detail:{correct_num}/{len(test_dataset)}')
     print("cm:\n", cm)
+
+
+
+def plot_cm(cm):
+
+    conf_matrix = np.array(cm)
+    total_class = 2
+    labels = ['nonPed', 'ped']
+
+    # 显示数据
+    plt.imshow(conf_matrix, cmap=plt.cm.Blues)
+
+    # 在图中标注数量/概率信息
+    thresh = conf_matrix.max() / 2  # 数值颜色阈值，如果数值超过这个，就颜色加深。
+    for x in range(total_class):
+        for y in range(total_class):
+            # 注意这里的matrix[y, x]不是matrix[x, y]
+            info = int(conf_matrix[y, x])
+            plt.text(x, y, info, size=18,
+                     verticalalignment='center',
+                     horizontalalignment='center',
+                     color="white" if info > thresh else "black")
+
+    plt.tight_layout()  # 保证图不重叠
+    plt.yticks(range(total_class), labels, size=14)
+    plt.xticks(range(total_class), labels, rotation=45, size=14)  # X轴字体倾斜45°
+    plt.ylabel('True label', size=14)
+    plt.xlabel('Predicted label', size=14)
+
+    # cur_name_contents = cur_name.split('on')
+    # plt_title = cur_name_contents[0] + ' on ' + cur_name_contents[1]
+
+    # plt.title(plt_title, size=14)
+    plt.subplots_adjust(left=0.023, right=0.977, top=0.857, bottom=0.22)
+
+    plt.show()
+    plt.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
