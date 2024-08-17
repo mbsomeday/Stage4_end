@@ -95,7 +95,6 @@ def pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict):
     y_pred = []
     y_true = []
 
-    i = 0
     with torch.no_grad():
         for data in tqdm(test_loader):
             images, labels, name = data
@@ -108,9 +107,6 @@ def pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict):
             y_pred.extend(pred.cpu().numpy())
             y_true.extend(labels.cpu().numpy())
 
-            i += 1
-            if i == 5:
-                break
 
     test_accuracy = correct_num / len(test_dataset)
     bc = balanced_accuracy_score(y_true, y_pred)
