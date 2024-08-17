@@ -83,7 +83,7 @@ def pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict):
 
     batch_size = opt_dict['batch_size']
 
-    test_dataset = pedCls_Dataset(var_opt=runOn, ds_name_list=ds_name_list, txt_name=txt_name)
+    test_dataset = pedCls_Dataset(runOn=runOn, ds_name_list=ds_name_list, txt_name=txt_name)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
     print(f'model: {ped_weights_path}')
