@@ -81,9 +81,9 @@ class pedCls_Dataset(Dataset):
         读取多个数据集的数据
     '''
 
-    def __init__(self, var_opt, ds_name_list, txt_name):
-        self.var_opt = var_opt
-        self.base_dir_list = [self.var_opt[ds_name] for ds_name in ds_name_list]
+    def __init__(self, runOn, ds_name_list, txt_name):
+        self.runOn = runOn
+        self.base_dir_list = [self.runOn[ds_name] for ds_name in ds_name_list]
         self.txt_name = txt_name
         self.image_transformer = transforms.Compose([
             transforms.ToTensor()
