@@ -109,7 +109,7 @@ def pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict):
             y_true.extend(labels.cpu().numpy())
 
             i += 1
-            if i == 10:
+            if i == 5:
                 break
 
     test_accuracy = correct_num / len(test_dataset)
@@ -125,6 +125,7 @@ def pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict):
 
 def plot_cm(cm):
 
+    print('开始绘制混淆矩阵')
     conf_matrix = np.array(cm)
     total_class = 2
     labels = ['nonPed', 'ped']
