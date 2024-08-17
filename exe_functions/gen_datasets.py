@@ -26,11 +26,9 @@ def gen_biased_image(runOn, gen_model, org_ds_name, txt_name, gen_image_save_dir
 
     # 加载 generator 模型
     generator = get_initGenerator()
-    # norm_layer = get_norm_layer(norm_type='batch')
-    # generator = ResnetGenerator(3, 3, ngf=64, norm_layer=norm_layer, use_dropout=True, n_blocks=9)
 
-    # cur_epoch = int(gen_weights_path.split('-')[-2])
     gen_weights_path = runOn['weights'][gen_model]
+
     checkpoints = torch.load(gen_weights_path, map_location=torch.device(DEVICE))
     generator.load_state_dict(checkpoints['model_state_dict'])
 
@@ -50,7 +48,6 @@ def gen_biased_image(runOn, gen_model, org_ds_name, txt_name, gen_image_save_dir
             images = images.to(DEVICE)
 
             cur_name = names[0]
-            print(cur_name)
 
             cur_name = cur_name.replace('\\', os.sep)
             name_contents = cur_name.split(os.sep)
@@ -104,6 +101,8 @@ if __name__ == '__main__':
     org_ds_name = opts.org_ds_name
     txt_name = opts.txt_name
     gen_image_save_dir = opts.gen_image_save_dir
+
+    print(gen_model)
 
     gen_biased_image(runOn=runOn, gen_model=gen_model,
                      org_ds_name=org_ds_name, txt_name=txt_name,
