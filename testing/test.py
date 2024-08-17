@@ -63,7 +63,7 @@ def datasetCls(runOn, ds_name_list, ds_label_list, txt_name, opt_dict):
             y_true.extend(labels.cpu().numpy())
 
     test_accuracy = correct_num / len(test_dataset)
-    cm = confusion_matrix(y_true, y_pred)
+    cm = confusion_matrix(y_true, y_pred, labels=ds_label_list)
     bc = balanced_accuracy_score(y_true, y_pred)
 
     print(f'Dataset Classification balanced accuracy: {bc:.4f}, accuracy: {test_accuracy:.4f}, detail:{correct_num}/{len(test_dataset)}')
@@ -109,7 +109,7 @@ def pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict):
 
     test_accuracy = correct_num / len(test_dataset)
     bc = balanced_accuracy_score(y_true, y_pred)
-    cm = confusion_matrix(y_true, y_pred)
+    cm = confusion_matrix(y_true, y_pred, labels=['nonPed', 'ped'])
 
     print(f'Pedestrian Classification balanced accuracy: {bc:.4f}, accuracy: {test_accuracy:.4f}, detail:{correct_num}/{len(test_dataset)}')
     print("cm:\n", cm)
