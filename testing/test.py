@@ -74,7 +74,7 @@ def pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict):
     print(' ---------- Start Pedestrian Classification ---------- ')
 
     # 模型准备
-    ped_weights_path = runOn[model_weights]
+    ped_weights_path = runOn['weights'][model_weights]
     model = vgg16_bn(2)
     checkpoints = torch.load(ped_weights_path, map_location=torch.device(DEVICE))
     model.load_state_dict(checkpoints['model_state_dict'])
