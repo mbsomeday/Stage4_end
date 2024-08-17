@@ -41,6 +41,8 @@ VARS_CLOUD = {
     'D2toD4': r'/kaggle/input/stage4-d2tod4-dataset-stable',
     'D3toD4': r'/kaggle/input/stage4-d3tod4-dataset-stable',
 
+    'test': r'/kaggle/working/test',
+
     'dsCls_weights': r'/kaggle/input/stage4-dscls-weights/vgg16bn-dsCls-029-0.9777.pth',
 
     'weights': {
