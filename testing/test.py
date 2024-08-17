@@ -112,7 +112,6 @@ def pedestrianCls(runOn, model_weights, ds_name_list, txt_name, opt_dict):
     bc = balanced_accuracy_score(y_true, y_pred)
     cm = confusion_matrix(y_true, y_pred)
 
-    plot_cm(cm)
 
     print(f'Pedestrian Classification balanced accuracy: {bc:.4f}, accuracy: {test_accuracy:.4f}, detail:{correct_num}/{len(test_dataset)}')
     print("cm:\n", cm)
