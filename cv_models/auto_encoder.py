@@ -1,4 +1,11 @@
-import os, torch, torchvision
+import sys, os
+
+# 将上级目录加入 sys.path， 防止命令行运行时找不到包
+curPath = os.path.abspath(os.path.dirname(__file__))
+root_path = os.path.split(curPath)[0]
+sys.path.append(root_path)
+
+import torch, torchvision
 from torch import nn
 from torchvision import transforms
 from torch.utils.data import DataLoader
