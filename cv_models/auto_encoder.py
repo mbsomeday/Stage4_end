@@ -84,7 +84,7 @@ for epoch in range(100):
         save_image(pic, r'/kaggle/working/mlp_img/image_{}.png'.format(epoch))
 
         pic1 = to_img(img.data)
-        save_image(pic, r'/kaggle/working/org_img/Ori_image_{}.png'.format(epoch))
+        save_image(pic1, r'/kaggle/working/org_img/Ori_image_{}.png'.format(epoch))
 
 
 
