@@ -19,9 +19,8 @@ from sklearn.metrics import balanced_accuracy_score
 import torch.nn.functional as F
 
 from cv_models.ResNet import resnet34
-from strategy import EarlyStopping
+from training.strategy import EarlyStopping
 from cv_models import DEVICE, VARS_LOCAL
-from dataset.dataset import pedCls_Dataset
 
 
 def train_one_epoch(model, loss_fn, optimizer, epoch, train_dataset, train_loader):
