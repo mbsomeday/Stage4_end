@@ -53,12 +53,12 @@ def train_one_epoch(model, loss_fn, optimizer, epoch, train_dataset, train_loade
 
     # 用 balanced accuracy来检验
     training_accuracy = balanced_accuracy_score(y_true, y_pred)
-    unit_training_loss = training_loss / len(train_dataset)
+    # unit_training_loss = training_loss / len(train_dataset)
 
     # training_accuracy = training_correct_num / len(train_dataset)
 
     print(
-        f'Training time for epoch:{epoch + 1}: {(time() - start_time):.2f}s, total training loss:{training_loss:.4f}, unit training loss:{unit_training_loss:.8f},\n training accuracy:{training_accuracy:.4f}')
+        f'Training time for epoch:{epoch + 1}: {(time() - start_time):.2f}s, total training loss:{training_loss:.4f}, \n training accuracy:{training_accuracy:.4f}')
     return model
 
 
