@@ -145,21 +145,21 @@ def train_ped_cls(model, model_name, dataset_name, train_dataset, train_loader, 
 
 
 
-if __name__ == '__main__':
-    model = resnet34(pretrained=False)
-    model_name = 'resNet34'
-    dataset_name = 'D1'
-    runOn = VARS_LOCAL
-    train_dataset = pedCls_Dataset(runOn=runOn, ds_name_list=['D1'], txt_name='train.txt')
-    train_loader = DataLoader(train_dataset, batch_size=1, shuffle=False)
-
-    val_dataset = pedCls_Dataset(runOn=runOn, ds_name_list=['D1'], txt_name='val.txt')
-    val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False)
-
-    model_save_dir = r'D:\my_phd\on_git\Stage4_end\cache'
-
-    train_ped_cls(model, model_name, dataset_name, train_dataset, train_loader, val_dataset, val_loader,
-          model_save_dir)
+# if __name__ == '__main__':
+#     model = resnet34(pretrained=False)
+#     model_name = 'resNet34'
+#     dataset_name = 'D1'
+#     runOn = VARS_LOCAL
+#     train_dataset = pedCls_Dataset(runOn=runOn, ds_name_list=['D1'], txt_name='train.txt')
+#     train_loader = DataLoader(train_dataset, batch_size=1, shuffle=False)
+#
+#     val_dataset = pedCls_Dataset(runOn=runOn, ds_name_list=['D1'], txt_name='val.txt')
+#     val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False)
+#
+#     model_save_dir = r'D:\my_phd\on_git\Stage4_end\cache'
+#
+#     train_ped_cls(model, model_name, dataset_name, train_dataset, train_loader, val_dataset, val_loader,
+#           model_save_dir)
 
 
 
