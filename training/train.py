@@ -51,6 +51,10 @@ def train_one_epoch(model, loss_fn, optimizer, epoch, train_dataset, train_loade
         _, pred = torch.max(out, 1)
         training_correct_num += (pred == labels).sum()
 
+        # 用于 balanced accuracy
+        y_pred.extend(pred.cpu().numpy())
+        y_true.extend(labels.cpu().numpy())
+
     # 用 balanced accuracy来检验
     training_accuracy = balanced_accuracy_score(y_true, y_pred)
     # unit_training_loss = training_loss / len(train_dataset)
@@ -118,12 +122,14 @@ def train_ped_cls(model, model_name, dataset_name, train_dataset, train_loader, 
     print('-' * 20 + 'Validation Info' + '-' * 20)
     print('Total Val Samples:', len(val_dataset))
 
-    formatted_datasetname = ''
-    for idx, cur_ds_name in enumerate(dataset_name):
-        if idx == 0:
-            formatted_datasetname += cur_ds_name
-        else:
-            formatted_datasetname += 'and' + cur_ds_name
+    formatted_datasetname = dataset_name[0]
+
+    # formatted_datasetname = ''
+    # for idx, cur_ds_name in enumerate(dataset_name):
+    #     if idx == 0:
+    #         formatted_datasetname += cur_ds_name
+    #     else:
+    #         formatted_datasetname += 'and' + cur_ds_name
 
     early_stopping = EarlyStopping(model_name=model_name, dataset_name=formatted_datasetname,
                                    model_save_dir=model_save_dir,
