@@ -122,7 +122,7 @@ def train_ped_cls(model, model_name, dataset_name, train_dataset, train_loader, 
     print('-' * 20 + 'Validation Info' + '-' * 20)
     print('Total Val Samples:', len(val_dataset))
 
-    formatted_datasetname = dataset_name[0]
+    formatted_datasetname = dataset_name
 
     # formatted_datasetname = ''
     # for idx, cur_ds_name in enumerate(dataset_name):
