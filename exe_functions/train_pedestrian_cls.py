@@ -60,7 +60,7 @@ print('Batch_size:', opt_dict['batch_size'])
 print('model_save_dir:', model_save_dir)
 print(' ---------- Setting Info End ----------')
 
-train_dataset = pedCls_Dataset(runOn=runOn, ds_name_list=ds_name_list, txt_name='augmentation_train')
+train_dataset = pedCls_Dataset(runOn=runOn, ds_name_list=ds_name_list, txt_name='augmentation_train.txt')
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
 val_dataset = pedCls_Dataset(runOn=runOn, ds_name_list=ds_name_list, txt_name='val.txt')
