@@ -17,7 +17,6 @@ from dataset.dataset import pedCls_Dataset
 def get_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--ds_name_list', nargs='+', default=['D1'])
-    parser.add_argument('--txt_name', type=str, default='test.txt')
     parser.add_argument('--batch_size', type=int, default=4)
     parser.add_argument('--var_opt', type=str, default='CLOUD')
     parser.add_argument('--model_name', type=str, default='resNet34')
@@ -32,7 +31,6 @@ def get_opt():
 opts = get_opt()
 
 ds_name_list = opts.ds_name_list
-txt_name = opts.txt_name
 batch_size = opts.batch_size
 var_opt = opts.var_opt
 model_name = opts.model_name
@@ -57,7 +55,6 @@ print(' ---------- Setting Info Start Training Pedestrian Classification -------
 print('Datasets are: ')
 for name in ds_name_list:
     print(name)
-print('txt_name:', txt_name)
 print('model_name:', model_name)
 print('Batch_size:', opt_dict['batch_size'])
 print('model_save_dir:', model_save_dir)
