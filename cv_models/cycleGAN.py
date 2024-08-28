@@ -50,6 +50,7 @@ def get_norm_layer(norm_type='instance'):
         norm_layer = functools.partial(nn.InstanceNorm2d, affine=False, track_running_stats=False)
     else:
         raise NotImplementedError('normalization layer [%s] is not found' % norm_type)
+
     return norm_layer
 
 
@@ -243,7 +244,11 @@ def get_initDiscriminator():
 
 
 
+if __name__ == '__main__':
+    from torchsummary import summary
 
+    model = get_initGenerator()
+    summary(model, (3, 224, 224))
 
 
 
