@@ -1,4 +1,11 @@
-import functools, torch, os, math, random
+import sys, os, argparse
+
+# 将上级目录加入 sys.path， 防止命令行运行时找不到包
+curPath = os.path.abspath(os.path.dirname(__file__))
+root_path = os.path.split(curPath)[0]
+sys.path.append(root_path)
+
+import functools, torch, math, random
 from tqdm import tqdm
 import numpy as np
 from torch import nn
