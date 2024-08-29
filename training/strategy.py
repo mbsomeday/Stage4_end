@@ -73,8 +73,6 @@ class EarlyStopping():
             if weights.endswith('.pth'):
                 all_weights.append(weights)
 
-        print('当前已保存:', len(all_weights))
-
         # 按存储格式来： save_name = f"netD_A-D1toD4-{epoch + 1:03d}-{min_loss_G:.6f}.pth"
         if len(all_weights) > num_saved:
             sorted = []
