@@ -59,6 +59,8 @@ VARS_CLOUD = {
         'G2to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D2toD4-044-0.7050.pth',
         'G3to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D3toD4-039-0.5250.pth',
 
+        'Res34D3': r'/kaggle/working/model/resNet34-D3-014-0.8933.pth'
+
     }
 }
 
