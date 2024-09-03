@@ -46,6 +46,7 @@ VARS_CLOUD = {
     'dsCls_weights': r'/kaggle/input/stage4-dscls-weights/vgg16bn-dsCls-029-0.9777.pth',
 
     'weights': {
+        'D123': r'/kaggle/input/stage4-temp-d123/VGG16-D1D2D3-021-0.9731.pth',
         'D1': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D1-014-0.9740.pth',
         'D2': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D2-025-0.9124.pth',
         'D3': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D3-025-0.9303.pth',
