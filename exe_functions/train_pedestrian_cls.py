@@ -9,7 +9,7 @@ from torch.utils.data import Dataset, DataLoader
 
 
 from cv_models import VARS_LOCAL, VARS_CLOUD, DEVICE
-from cv_models.ResNet import resnet34
+from cv_models.vgg import vgg16_bn
 from training.train import train_ped_cls
 from dataset.dataset import pedCls_Dataset
 
@@ -48,8 +48,7 @@ opt_dict = {
     'batch_size': opts.batch_size
 }
 
-model = resnet34(pretrained=False)
-
+model = vgg16_bn()
 
 print(' ---------- Setting Info Start Training Pedestrian Classification ----------')
 print('Datasets are: ')
@@ -65,7 +64,6 @@ train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
 val_dataset = pedCls_Dataset(runOn=runOn, ds_name_list=ds_name_list, txt_name='val.txt')
 val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
-
 
 train_ped_cls(model, model_name, dataset_name, train_dataset, train_loader, val_dataset, val_loader,
               model_save_dir)
