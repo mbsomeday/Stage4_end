@@ -21,7 +21,6 @@ def get_opt():
     parser.add_argument('--var_opt', type=str, default='CLOUD')
     parser.add_argument('--model_name', type=str, default='VGG16')
     parser.add_argument('--model_save_dir', type=str)
-    parser.add_argument('--pre_train', type=str)
 
     args = parser.parse_args()
 
@@ -52,10 +51,6 @@ opt_dict = {
 
 model = vgg16_bn()
 
-checkpoints = torch.load(pre_train, map_location=torch.device(DEVICE))
-model.load_state_dict(checkpoints['model_state_dict'])
-model.to(DEVICE)
-model.eval()
 
 print(' ---------- Setting Info Start Training Pedestrian Classification ----------')
 print('Datasets are: ')
