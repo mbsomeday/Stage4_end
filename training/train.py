@@ -142,6 +142,16 @@ def train_ped_cls(model, model_name, dataset_name, train_dataset, train_loader, 
 
         # Early Stopping 策略
         early_stopping(val_loss=val_loss, val_acc=val_accuracy, model=model, optimizer=optimizer, epoch=epoch + 1)
+        # 在存储权重的文件下再建一个文件夹，存放counter
+        counter_dir = os.path.join(model_save_dir, 'counter')
+        if not os.path.exists(counter_dir):
+            os.mkdir(counter_dir)
+        counter_file = os.path.join(counter_dir, 'counter.txt')
+        with open(counter_file, 'a') as f:
+            msg = str(epoch + 1) + ':' + str(early_stopping.counter) + '\n'
+            f.write(msg)
+
+
         if early_stopping.early_stop:
             print("Early stopping")
             break  # 跳出迭代，结束训练
