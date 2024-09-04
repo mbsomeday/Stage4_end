@@ -34,7 +34,6 @@ batch_size = opts.batch_size
 var_opt = opts.var_opt
 model_name = opts.model_name
 model_save_dir = opts.model_save_dir
-pre_train = opts.pre_train
 
 # 这里保证每次只有一个列表
 dataset_name = ds_name_list[0]
