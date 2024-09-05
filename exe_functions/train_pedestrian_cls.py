@@ -36,7 +36,12 @@ model_name = opts.model_name
 model_save_dir = opts.model_save_dir
 
 # 这里保证每次只有一个列表
-dataset_name = ds_name_list[0]
+dataset_name = ''
+for idx, ds_name in enumerate(ds_name_list):
+    if idx == 0:
+        dataset_name += ds_name
+    else:
+        dataset_name += ' ' + ds_name
 
 
 if var_opt == 'CLOUD':
