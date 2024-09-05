@@ -44,6 +44,7 @@ for idx, ds_name in enumerate(ds_name_list):
         dataset_name += ' ' + ds_name
 
 
+
 if var_opt == 'CLOUD':
     runOn = VARS_CLOUD
 else:
@@ -61,6 +62,7 @@ print('Datasets are: ')
 for name in ds_name_list:
     print(name)
 print('model_name:', model_name)
+print('dataset_name:', dataset_name)
 print('Batch_size:', opt_dict['batch_size'])
 print('model_save_dir:', model_save_dir)
 print(' ---------- Setting Info End ----------')
