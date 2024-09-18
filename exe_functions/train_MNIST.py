@@ -9,7 +9,7 @@ import torch.optim as optim
 
 
 BATCH_SIZE=512
-EPOCHS=20
+EPOCHS=200
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 dataset_dir = r'/kaggle/working/'
