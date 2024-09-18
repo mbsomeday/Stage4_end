@@ -14,6 +14,8 @@ VARS_LOCAL = {
     'dsCls_weights': r'D:\my_phd\Model_Weights\Stage4\Baseline\vgg16bn-dsCls-029-0.9777.pth',
 
     'weights': {
+        'temp': r'D:\chrom_download\VGG16-D1D2-033-0.9755.pth',
+
         'D1': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D1-014-0.9740.pth',
         'D2': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D2-025-0.9124.pth',
         'D3': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D3-025-0.9303.pth',
