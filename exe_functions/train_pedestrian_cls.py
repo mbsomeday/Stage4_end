@@ -37,7 +37,7 @@ model_save_dir = opts.model_save_dir
 
 # 这里保证每次只有一个列表
 dataset_name = ''
-for idx, ds_name in enumerate(ds_name_list):
+for ds_name in ds_name_list:
     dataset_name += ds_name
 
 
