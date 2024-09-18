@@ -74,7 +74,7 @@ model.to(device)  # 如果cuda可用，则将模型从CPU移动到GPU上进行�
 criterion = nn.MSELoss()  # 损失函数
 optimizer = optim.Adam(model.parameters(), lr=1e-3)  # 优化器，学习率为0.001
 
-num_epochs = 20  # 训练周期
+num_epochs = 100  # 训练周期
 lowest_loss = float('inf')  # 初始化最低损失为正无穷，用于跟踪保存最好的模型
 
 
