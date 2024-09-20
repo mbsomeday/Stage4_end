@@ -124,9 +124,68 @@ class pedCls_Dataset(Dataset):
         return img, label, image_name
 
 
+class CycleGan_Dataset(Dataset):
+    '''
+        返回：imgA, imgB, pathA, pathB
+        把图片从A转换到B
+    '''
+    def __init__(self, runOn, dataset_name_list, txt_name, get_num):
+        self.dataset_dir_list = [runOn[ds_name] for ds_name in dataset_name_list]
+        self.dsA_dir = self.dataset_dir_list[0]
+        self.dsB_dir = self.dataset_dir_list[1]
+        self.txt_name = txt_name
+        self.get_num = get_num
 
+        self.image_transformer = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+        ])
 
+        self.imgA = self.init_ImageandLabel(self.dsA_dir, self.txt_name)
+        self.imgB = self.init_ImageandLabel(self.dsB_dir, self.txt_name)
 
+    def init_ImageandLabel(self, base_dir, txt_name):
+        '''
+            获取某数据集中的image和label
+        '''
+        images = []
+
+        txt_path = os.path.join(base_dir, 'dataset_txt', self.txt_name)
+        with open(txt_path, 'r') as f:
+            data = f.readlines()
+
+        if self.get_num > len(data):
+            print(f'数据集 {txt_path} 没有这么多的数据({self.get_num})，减少get_num的数量！')
+            return
+
+        # 取消固定seed，让每次都是随机的
+        # random.seed(13)
+        random.shuffle(data)
+
+        for i in range(self.get_num):
+            line = data[i]
+            line = line.replace('\\', os.sep)
+            line = line.strip()
+            words = line.split()
+
+            image_path = os.path.join(base_dir, words[0])
+            images.append(image_path)
+
+        return images
+
+    def __len__(self):
+        return self.get_num
+
+    def __getitem__(self, item):
+        imgA_path = self.imgA[item]
+        imgB_path = self.imgB[item]
+
+        imgA = Image.open(imgA_path)
+        imgA = self.image_transformer(imgA)
+        imgB = Image.open(imgB_path)
+        imgB = self.image_transformer(imgB)
+
+        return imgA, imgB, imgA_path
 
 
 
