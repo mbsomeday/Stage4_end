@@ -225,24 +225,6 @@ class NLayerDiscriminator(nn.Module):
         return self.model(input)
 
 
-def get_initGenerator():
-    '''
-        获取generator
-    '''
-    norm_layer = get_norm_layer(norm_type='batch')
-    G_model = ResnetGenerator(3, 3, ngf=64, norm_layer=norm_layer, use_dropout=True, n_blocks=9)
-    return G_model
-
-
-def get_initDiscriminator():
-    '''
-        获取discriminator
-    '''
-    norm_layer = get_norm_layer(norm_type='batch')
-    D_model = NLayerDiscriminator(3, 64, n_layers=3, norm_layer=norm_layer)
-    return D_model
-
-
 # 新的discriminator，用于cyclegan
 class Discriminator(nn.Module):
     def __init__(self, input_nc):
@@ -275,7 +257,23 @@ class Discriminator(nn.Module):
         return F.avg_pool2d(x, x.size()[2:]).view(x.size()[0], -1)
 
 
+def get_initGenerator():
+    '''
+        获取generator
+    '''
+    norm_layer = get_norm_layer(norm_type='batch')
+    G_model = ResnetGenerator(3, 3, ngf=64, norm_layer=norm_layer, use_dropout=True, n_blocks=9)
+    return G_model
 
+
+def get_initDiscriminator():
+    '''
+        获取discriminator
+    '''
+    # norm_layer = get_norm_layer(norm_type='batch')
+    # D_model = NLayerDiscriminator(3, 64, n_layers=3, norm_layer=norm_layer)
+    D_model = Discriminator(3)
+    return D_model
 
 
 

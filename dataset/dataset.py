@@ -149,7 +149,7 @@ class cycleGAN_Dataset(Dataset):
         self.imgA, self.imgB = self.init_ImageandLabel()
 
         # 输出一些必要信息
-        print(f'Transformation Dataset from {self.dsA_name} to {self.dsB_name}, get_num={self.get_num}')
+        print(f'[{txt_name[:-4]}] Transformation Dataset from {self.dsA_name} to {self.dsB_name}, get_num={self.get_num}')
 
     def init_ImageandLabel(self):
         dsA_txt_path = os.path.join(self.dsA_dir, 'dataset_txt', self.txt_name)
