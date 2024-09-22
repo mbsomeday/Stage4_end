@@ -124,13 +124,18 @@ class pedCls_Dataset(Dataset):
         return img, label, image_name
 
 
-class CycleGan_Dataset(Dataset):
+class cycleGAN_Dataset(Dataset):
     '''
         返回：imgA, imgB, pathA, pathB
         把图片从A转换到B
+        get_num: 若没有指定，则取两个数据集数据量的最小值
     '''
-    def __init__(self, runOn, dataset_name_list, txt_name, get_num):
+    def __init__(self, runOn, dataset_name_list, txt_name, get_num=None):
         self.dataset_dir_list = [runOn[ds_name] for ds_name in dataset_name_list]
+
+        self.dsA_name = dataset_name_list[0]
+        self.dsB_name = dataset_name_list[1]
+
         self.dsA_dir = self.dataset_dir_list[0]
         self.dsB_dir = self.dataset_dir_list[1]
         self.txt_name = txt_name
@@ -141,26 +146,44 @@ class CycleGan_Dataset(Dataset):
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         ])
 
-        self.imgA = self.init_ImageandLabel(self.dsA_dir, self.txt_name)
-        self.imgB = self.init_ImageandLabel(self.dsB_dir, self.txt_name)
+        self.imgA, self.imgB = self.init_ImageandLabel()
 
-    def init_ImageandLabel(self, base_dir, txt_name):
+        # 输出一些必要信息
+        print(f'Transformation Dataset from {self.dsA_name} to {self.dsB_name}, get_num={self.get_num}')
+
+    def init_ImageandLabel(self):
+        dsA_txt_path = os.path.join(self.dsA_dir, 'dataset_txt', self.txt_name)
+        with open(dsA_txt_path, 'r') as f:
+            dsA_data = f.readlines()
+
+        dsB_txt_path = os.path.join(self.dsB_dir, 'dataset_txt', self.txt_name)
+        with open(dsB_txt_path, 'r') as f:
+            dsB_data = f.readlines()
+
+        dsA_num = len(dsA_data)
+        dsB_num = len(dsB_data)
+
+        if self.get_num is not None:
+            if self.get_num > dsA_num or self.get_num > dsB_num:
+                print(f'Dataset A total num: {dsA_num}, \ndataset B total number: {dsB_num}, \n请重新设置get_num的值!(当前get_num={self.get_num})')
+        else:
+            self.get_num = min(dsA_num, dsB_num)
+
+        imgA = self.get_image(dsA_data, self.dsA_dir)
+        imgB = self.get_image(dsB_data, self.dsB_dir)
+
+        return imgA, imgB
+
+
+    def get_image(self, data, base_dir):
         '''
-            获取某数据集中的image和label
+        :param data: 读取的txt文件
+        :param base_dir:
+        :return: 根据读取的txt返回get_num数量的image_path
         '''
-        images = []
 
-        txt_path = os.path.join(base_dir, 'dataset_txt', self.txt_name)
-        with open(txt_path, 'r') as f:
-            data = f.readlines()
-
-        if self.get_num > len(data):
-            print(f'数据集 {txt_path} 没有这么多的数据({self.get_num})，减少get_num的数量！')
-            return
-
-        # 取消固定seed，让每次都是随机的
-        # random.seed(13)
         random.shuffle(data)
+        images = []
 
         for i in range(self.get_num):
             line = data[i]
@@ -172,6 +195,8 @@ class CycleGan_Dataset(Dataset):
             images.append(image_path)
 
         return images
+
+
 
     def __len__(self):
         return self.get_num
@@ -185,7 +210,7 @@ class CycleGan_Dataset(Dataset):
         imgB = Image.open(imgB_path)
         imgB = self.image_transformer(imgB)
 
-        return imgA, imgB, imgA_path
+        return imgA, imgB
 
 
 
