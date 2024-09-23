@@ -253,13 +253,13 @@ def train_one_epoch(runOn, netG_A2B, netG_B2A, netD_A, netD_B,
     netD_A.train()
     netD_B.train()
 
-    Tensor = torch.cuda.FloatTensor if runOn == 'cuda' else torch.Tensor
+    Tensor = torch.cuda.FloatTensor if DEVICE == 'cuda' else torch.Tensor
 
     epoch_start_time = time()  # timer for entire epoch
 
     for batch_id, data in enumerate(tqdm(train_loader)):
-        real_A = data[0].to(runOn)
-        real_B = data[1].to(runOn)
+        real_A = data[0].to(DEVICE)
+        real_B = data[1].to(DEVICE)
 
         num_sample = real_A.shape[0]
 
@@ -345,6 +345,7 @@ def train_one_epoch(runOn, netG_A2B, netG_B2A, netD_A, netD_B,
 
         optimizer_D_B.step()
         ###################################
+        # break
 
     print(f'Time for training epoch {epoch + 1}: {int(time() - epoch_start_time)} s. loss_G:{loss_G:.6f}, loss_D_A:{loss_D_A:.6f}, loss_D_B:{loss_D_B:.6f}.')
 
@@ -434,104 +435,9 @@ def val_cycleGAN(netG_A2B, netG_B2A, netD_A, netD_B, val_dataset, val_loader, cr
             # Total loss
             loss_D_B = (loss_D_real + loss_D_fake) * 0.5
             ###################################
+            # break
 
     return loss_G, loss_D_A, loss_D_B
-
-def train(runOn, dataset_name_list, batch_size, get_num, EPOCHS):
-    # 获取 对应数据集的 name 和 label
-    from_ds_name = dataset_name_list[0]
-    from_ds_label = int(from_ds_name[1]) - 1
-
-    to_ds_name = dataset_name_list[1]
-    to_ds_label = int(to_ds_name[1]) - 1
-
-    lr = 0.0002
-    beta1 = 0.5
-
-    # 初次训练
-    netG_A2B, netG_B2A, netD_A, netD_B = get_init_CycleGAN(runOn)
-    optimizer_G = torch.optim.Adam(itertools.chain(netG_A2B.parameters(), netG_B2A.parameters()),
-                                   lr=lr, betas=(beta1, 0.999))
-    optimizer_D_A = torch.optim.Adam(netD_A.parameters(), lr=0.0002, betas=(0.5, 0.999))
-    optimizer_D_B = torch.optim.Adam(netD_B.parameters(), lr=0.0002, betas=(0.5, 0.999))
-
-    start_epoch = 0
-    loss_G = np.inf
-    loss_D_A = np.inf
-    loss_D_B = np.inf
-
-    # 获取 dataset
-    train_dataset, train_loader = get_dataset_loader(runOn, dataset_name_list, batch_size,
-                                                     txt_name='augmentation_train.txt',
-                                                     get_num=get_num)
-    # TODO： 这里的get_num每次要调整
-    val_dataset, val_loader = get_dataset_loader(runOn, dataset_name_list, batch_size,
-                                                 txt_name='val.txt', get_num=1000)
-
-    # Buffer
-    pool_size = 50
-    fake_A_pool = ImagePool(pool_size)
-    fake_B_pool = ImagePool(pool_size)
-
-    # loss and optimizer
-    #     criterionGAN = GANLoss('lsgan').to(DEVICE)
-    criterionGAN = torch.nn.MSELoss()
-    criterionCycle = torch.nn.L1Loss()
-    criterionIdt = torch.nn.L1Loss()
-
-    # 输出一些基本信息
-    print('-' * 20 + 'Training Info' + '-' * 20)
-    print(f'Transferring {from_ds_name} to {to_ds_name}')
-    print('Total Training Samples:', len(train_dataset))
-    print('Total Batch:', len(train_loader))
-    print(f'Start Epoch:{start_epoch}, Total EPOCH:', EPOCHS)
-
-    model_save_dir = r'/kaggle/working'
-    early_stopping = EarlyStopping_CycleGAN(from_ds_name=from_ds_name,
-                                   to_ds_name=to_ds_name,
-                                   save_base_dir=model_save_dir,
-                                   patience=10)
-
-    for epoch in range(start_epoch, EPOCHS):
-        netG_A2B.train()
-        netG_B2A.train()
-        netD_A.train()
-        netD_B.train()
-
-        netG_A2B, netG_B2A, netD_A, netD_B, optimizer_G, optimizer_D_A, optimizer_D_B = train_one_epoch(runOn,
-                                                                                                        netG_A2B,
-                                                                                                        netG_B2A,
-                                                                                                        netD_A, netD_B,
-                                                                                                        fake_A_pool,
-                                                                                                        fake_B_pool,
-                                                                                                        criterionGAN,
-                                                                                                        criterionCycle,
-                                                                                                        criterionIdt,
-                                                                                                        optimizer_G,
-                                                                                                        optimizer_D_A,
-                                                                                                        optimizer_D_B,
-                                                                                                        epoch,
-                                                                                                        train_dataset,
-                                                                                                        train_loader)
-        #
-        # loss_G, loss_D_A, loss_D_B = val_cycleGAN(netG_A2B, netG_B2A, netD_A, netD_B,
-        #                                           val_dataset, val_loader,
-        #                                           criterionGAN, criterionCycle, criterionIdt,
-        #                                           )
-
-        # Early Stopping 策略
-        early_stopping(loss_G, loss_D_A, loss_D_B, netG_A2B, netG_B2A, netD_A, netD_B,
-                       optimizer_G, optimizer_D_A, optimizer_D_B, epoch=epoch + 1)
-
-        if early_stopping.early_stop:
-            print("Early stopping")
-            break  # 跳出迭代，结束训练
-
-        # 每次重新加载dataloader
-        train_dataset, train_loader = get_dataset_loader(runOn,
-                                                        dataset_name_list, batch_size,
-                                                         txt_name='augmentation_train.txt',
-                                                         get_num=get_num)
 
 
 

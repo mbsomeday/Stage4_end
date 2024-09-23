@@ -11,11 +11,11 @@ from cv_models import VARS_LOCAL, VARS_CLOUD, DEVICE
 
 def get_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--ds_name_list', nargs='+', default=['D1'])
+    parser.add_argument('--ds_name_list', nargs='+', default=['D4'])
     parser.add_argument('--txt_name', type=str, default='test.txt')
-    parser.add_argument('--model_weights', type=str)
+    parser.add_argument('--model_weights', type=str, default='temp')
     parser.add_argument('--batch_size', type=int, default=4)
-    parser.add_argument('--var_opt', type=str, default='CLOUD')
+    parser.add_argument('--var_opt', type=str, default='LOCAL')
 
     args = parser.parse_args()
 
