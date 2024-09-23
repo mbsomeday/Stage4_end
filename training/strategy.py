@@ -1,4 +1,4 @@
-import sys, os, argparse, shutil
+import sys, os, argparse, shutil, time
 
 # 将上级目录加入 sys.path， 防止命令行运行时找不到包
 curPath = os.path.abspath(os.path.dirname(__file__))
@@ -115,7 +115,8 @@ class EarlyStopping_CycleGAN():
         当 loss_G 稳定不变 patience 个 epoch 时，结束训练
     '''
 
-    def __init__(self, from_ds_name, to_ds_name, loss_G, loss_D_A, loss_D_B, save_base_dir, patience=10, delta=0.0001):
+    def __init__(self, from_ds_name, to_ds_name, loss_G, loss_D_A, loss_D_B, save_base_dir, save_counter=None,
+                 patience=10, delta=0.0001):
 
         self.from_ds_name = from_ds_name
         self.to_ds_name = to_ds_name
@@ -127,6 +128,7 @@ class EarlyStopping_CycleGAN():
         self.delta = delta
         self.counter = 0  # 记录loss不变的epoch数目
         self.early_stop = False
+        self.save_counter = save_counter
         print('创建early stopping')
 
     def __call__(self, loss_G, loss_D_A, loss_D_B, netG_A2B, netG_B2A, netD_A, netD_B,
@@ -148,6 +150,19 @@ class EarlyStopping_CycleGAN():
                                  optimizer_G, optimizer_D_A, optimizer_D_B, epoch)
             self.loss_G = loss_G
             self.counter = 0
+
+        if self.save_counter:
+            counter_txt = os.path.join(self.save_counter, 'counter.txt')
+            with open(counter_txt, 'a') as f:
+                # 获得当前时间时间戳
+                now = int(time.time())
+                # 转换为其他日期格式,如:"%Y-%m-%d %H:%M:%S"
+                timeArray = time.localtime(now)
+                otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+
+                msg = str(self.counter) + ' ' + otherStyleTime + '\n'
+
+                f.write(msg)
 
     def save_checkpoint(self, loss_G, loss_D_A, loss_D_B, netG_A2B, netG_B2A, netD_A, netD_B,
                         optimizer_G, optimizer_D_A, optimizer_D_B, epoch):

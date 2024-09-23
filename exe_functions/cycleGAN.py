@@ -111,9 +111,11 @@ def get_opt():
     parser.add_argument('--batch_size', type=int, default=2)
     parser.add_argument('--ds_name_list', nargs='+', default=['D4', 'D4'])
     parser.add_argument('--save_base_dir', type=str, default=r'/kaggle/working/model')
+    parser.add_argument('--save_counter', type=str, default=r'/kaggle/working')
     parser.add_argument('--var_opt', type=str, default='LOCAL')
     parser.add_argument('--preTrainedWeights', nargs='+', default=[])
     parser.add_argument('--get_num_train', default=10000)
+
 
 
     args = parser.parse_args()
@@ -122,8 +124,7 @@ def get_opt():
 
 # ------------------------ 加载模型 ------------------------
 
-def train(preTrainedWeights, get_num_train):
-
+def train(runOn, ds_name_list, save_base_dir, save_counter, preTrainedWeights, get_num_train, batch_size):
     if len(preTrainedWeights) == 0:
         models = get_init_CycleGAN()
         netG_A2B, netG_B2A, netD_A, netD_B = models
@@ -161,7 +162,7 @@ def train(preTrainedWeights, get_num_train):
 
     early_stopping = EarlyStopping_CycleGAN(from_ds_name=ds_name_list[0],
                                             to_ds_name=ds_name_list[1], save_base_dir=save_base_dir,
-                                            loss_G=loss_G, loss_D_A=loss_D_A, loss_D_B=loss_D_B
+                                            loss_G=loss_G, loss_D_A=loss_D_A, loss_D_B=loss_D_B, save_counter=save_counter
                                             )
 
 
@@ -222,13 +223,14 @@ if __name__ == '__main__':
     batch_size = opts.batch_size
     preTrainedWeights = opts.preTrainedWeights
     get_num_train = opts.get_num_train
+    save_counter = opts.save_counter
 
     if var_opt == 'CLOUD':
         runOn = VARS_CLOUD
     else:
         runOn = VARS_LOCAL
 
-    train(preTrainedWeights, get_num_train)
+    train(runOn, ds_name_list, save_base_dir, save_counter, preTrainedWeights, get_num_train, batch_size)
 
 
 
