@@ -112,9 +112,9 @@ def get_opt():
     parser.add_argument('--ds_name_list', nargs='+', default=['D4', 'D4'])
     parser.add_argument('--save_base_dir', type=str, default=r'/kaggle/working/model')
     parser.add_argument('--save_counter', type=str, default=r'/kaggle/working')
-    parser.add_argument('--var_opt', type=str, default='LOCAL')
+    parser.add_argument('--var_opt', type=str, default='CLOUD')
     parser.add_argument('--preTrainedWeights', nargs='+', default=[])
-    parser.add_argument('--get_num_train', default=10000)
+    parser.add_argument('--get_num_train', default=1000)
 
 
 
@@ -198,6 +198,8 @@ def train(runOn, ds_name_list, save_base_dir, save_counter, preTrainedWeights, g
                                                   val_dataset, val_loader,
                                                   criterionGAN, criterionCycle, criterionIdt,
                                                   )
+
+        print(f'Validation results: loss_G:{loss_G:.6f}, loss_D_A:{loss_D_A:.6f}, loss_D_B:{loss_D_B:.6f}.')
 
         # Early Stopping 策略
         early_stopping(loss_G, loss_D_A, loss_D_B, netG_A2B, netG_B2A, netD_A, netD_B,

@@ -253,7 +253,7 @@ def train_one_epoch(runOn, netG_A2B, netG_B2A, netD_A, netD_B,
     netD_A.train()
     netD_B.train()
 
-    Tensor = torch.cuda.FloatTensor if DEVICE == 'cuda' else torch.Tensor
+    # Tensor = torch.cuda.FloatTensor if DEVICE == 'cuda' else torch.Tensor
 
     epoch_start_time = time()  # timer for entire epoch
 
@@ -376,11 +376,14 @@ def val_cycleGAN(netG_A2B, netG_B2A, netD_A, netD_B, val_dataset, val_loader, cr
 
             num_sample = real_A.shape[0]
 
-            target_real = Variable(Tensor(num_sample, 1).fill_(1.0), requires_grad=False)
-            target_fake = Variable(Tensor(num_sample, 1).fill_(0.0), requires_grad=False)
+            # target_real = Variable(Tensor(num_sample, 1).fill_(1.0), requires_grad=False)
+            # target_fake = Variable(Tensor(num_sample, 1).fill_(0.0), requires_grad=False)
 
-            #             target_real = torch.tensor(torch.zeros(num_sample, 1), device='cuda')
-            #             target_real = torch.tensor(torch.ones(num_sample, 1), device='cuda')
+            # target_real = torch.tensor(torch.zeros(num_sample, 1), device='cuda')
+            # target_real = torch.tensor(torch.ones(num_sample, 1), device='cuda')
+
+            target_real = torch.zeros(num_sample, 1).clone().detach().requires_grad_(True).to(DEVICE)
+            target_fake = torch.ones(num_sample, 1).clone().detach().requires_grad_(True).to(DEVICE)
 
             ###### Generators A2B and B2A ######
 
@@ -440,6 +443,7 @@ def val_cycleGAN(netG_A2B, netG_B2A, netD_A, netD_B, val_dataset, val_loader, cr
             loss_D_B = (loss_D_real + loss_D_fake) * 0.5
             ###################################
             # break
+
 
     return loss_G, loss_D_A, loss_D_B
 
