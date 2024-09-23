@@ -263,11 +263,12 @@ def train_one_epoch(runOn, netG_A2B, netG_B2A, netD_A, netD_B,
 
         num_sample = real_A.shape[0]
 
-        target_real = Variable(Tensor(num_sample, 1).fill_(1.0), requires_grad=False)
-        target_fake = Variable(Tensor(num_sample, 1).fill_(0.0), requires_grad=False)
 
-        #         target_real = torch.tensor(torch.zeros(num_sample, 1), device='cuda')
-        #         target_real = torch.tensor(torch.ones(num_sample, 1), device='cuda')
+        # target_real = Variable(Tensor(num_sample, 1).fill_(1.0), requires_grad=False)
+        # target_fake = Variable(Tensor(num_sample, 1).fill_(0.0), requires_grad=False)
+
+        target_real = torch.tensor(torch.zeros(num_sample, 1), device='cuda')
+        target_real = torch.tensor(torch.ones(num_sample, 1), device='cuda')
 
         ###### Generators A2B and B2A ######
 
