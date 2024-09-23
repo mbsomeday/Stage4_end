@@ -115,13 +115,13 @@ class EarlyStopping_CycleGAN():
         当 loss_G 稳定不变 patience 个 epoch 时，结束训练
     '''
 
-    def __init__(self, from_ds_name, to_ds_name, save_base_dir, patience=10, delta=0.0001):
+    def __init__(self, from_ds_name, to_ds_name, loss_G, loss_D_A, loss_D_B, save_base_dir, patience=10, delta=0.0001):
 
         self.from_ds_name = from_ds_name
         self.to_ds_name = to_ds_name
-        self.loss_G = np.inf
-        self.loss_D_A = np.inf
-        self.loss_D_B = np.inf
+        self.loss_G = loss_G
+        self.loss_D_A = loss_D_A
+        self.loss_D_B = loss_D_B
         self.save_base_dir = save_base_dir
         self.patience = patience
         self.delta = delta

@@ -108,7 +108,7 @@ EPOCHS = 100
 
 def get_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--batch_size', type=int, default=1)
+    parser.add_argument('--batch_size', type=int, default=2)
     parser.add_argument('--ds_name_list', nargs='+', default=['D4', 'D4'])
     parser.add_argument('--save_base_dir', type=str, default=r'/kaggle/working/model')
     parser.add_argument('--var_opt', type=str, default='LOCAL')
@@ -129,11 +129,15 @@ def train(preTrainedWeights, get_num_train):
         netG_A2B, netG_B2A, netD_A, netD_B = models
         optimizers, losses, start_epoch = init_Hyperparameter(netG_A2B, netG_B2A, netD_A, netD_B)
 
-
     # 加载训练了一半的模型
     else:
         start_epoch, models, optimizers, losses = reload(preTrainedWeights)
         netG_A2B, netG_B2A, netD_A, netD_B = models
+
+    netG_A2B.to(DEVICE)
+    netG_B2A.to(DEVICE)
+    netD_A.to(DEVICE)
+    netD_B.to(DEVICE)
 
     optimizer_G, optimizer_D_A, optimizer_D_B = optimizers
     loss_G, loss_D_A, loss_D_B = losses
@@ -156,7 +160,9 @@ def train(preTrainedWeights, get_num_train):
     criterionIdt = torch.nn.L1Loss()
 
     early_stopping = EarlyStopping_CycleGAN(from_ds_name=ds_name_list[0],
-                                            to_ds_name=ds_name_list[1], save_base_dir=save_base_dir)
+                                            to_ds_name=ds_name_list[1], save_base_dir=save_base_dir,
+                                            loss_G=loss_G, loss_D_A=loss_D_A, loss_D_B=loss_D_B
+                                            )
 
 
 
