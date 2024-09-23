@@ -114,7 +114,7 @@ def get_opt():
     parser.add_argument('--save_counter', type=str, default=r'/kaggle/working')
     parser.add_argument('--var_opt', type=str, default='CLOUD')
     parser.add_argument('--preTrainedWeights', nargs='+', default=[])
-    parser.add_argument('--get_num_train', default=1000)
+    parser.add_argument('--get_num_train', type=int, default=5000)
 
 
 
