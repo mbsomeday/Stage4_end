@@ -110,7 +110,7 @@ def get_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch_size', type=int, default=1)
     parser.add_argument('--ds_name_list', nargs='+', default=['D4', 'D4'])
-    parser.add_argument('--save_base_dir', type=str, default=r'/kaggle/working/')
+    parser.add_argument('--save_base_dir', type=str, default=r'/kaggle/working/model')
     parser.add_argument('--var_opt', type=str, default='LOCAL')
     parser.add_argument('--preTrainedWeights', nargs='+', default=[])
     parser.add_argument('--get_num_train', default=10000)
