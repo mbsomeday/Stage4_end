@@ -41,6 +41,7 @@ VARS_CLOUD = {
     'D1toD4': r'/kaggle/input/stage4-d1tod4-stable',
     'D2toD4': r'/kaggle/input/stage4-d2tod4-dataset-stable',
     'D3toD4': r'/kaggle/input/stage4-d3tod4-dataset-stable',
+    'D4toD4': r'/kaggle/input/stage4-d4tod4-stable',
 
     'dsCls_weights': r'/kaggle/input/stage4-dscls-weights/vgg16bn-dsCls-029-0.9777.pth',
 
@@ -54,6 +55,7 @@ VARS_CLOUD = {
         'D1toD4': r'/kaggle/input/stage4-trainongentod4-weights-stable/vgg16bn-D1toD4-006-0.9589.pth',
         'D2toD4': r'/kaggle/input/stage4-trainongentod4-weights-stable/vgg16bn-D2toD4-025-0.9304.pth',
         'D3toD4': r'/kaggle/input/stage4-trainongentod4-weights-stable/vgg16bn-D3toD4-047-0.9378.pth',
+
 
         'G1to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D1toD4-037-0.8150.pth',
         'G2to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D2toD4-044-0.7050.pth',
