@@ -83,7 +83,7 @@ def get_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--gen_model', type=str)
     parser.add_argument('--org_ds_name', type=str)
-    parser.add_argument('--txt_name', type=str, default='test.txt')
+    parser.add_argument('--txt_name', type=str, default='augmentation_train.txt')
     parser.add_argument('--running_on', type=str, default='CLOUD')
     parser.add_argument('--gen_image_save_dir', type=str)
 

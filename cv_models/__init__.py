@@ -14,8 +14,6 @@ VARS_LOCAL = {
     'dsCls_weights': r'D:\my_phd\Model_Weights\Stage4\Baseline\vgg16bn-dsCls-029-0.9777.pth',
 
     'weights': {
-        'temp': r'D:\chrom_download\VGG16-D1D2-033-0.9755.pth',
-
         'D1': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D1-014-0.9740.pth',
         'D2': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D2-025-0.9124.pth',
         'D3': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D3-025-0.9303.pth',
@@ -28,6 +26,7 @@ VARS_LOCAL = {
         'G1to4': r'D:\my_phd\Model_Weights\Stage4\CycleGAN\netG_A-D1toD4-037-0.8150.pth',
         'G2to4': r'D:\my_phd\Model_Weights\Stage4\CycleGAN\netG_A-D2toD4-044-0.7050.pth',
         'G3to4': r'D:\my_phd\Model_Weights\Stage4\CycleGAN\netG_A-D3toD4-039-0.5250.pth',
+        'G4to4': r'D:\chrom_download\netG_A2B-D4toD4-16-1.5909.pth',
     }
 
 }
@@ -42,8 +41,6 @@ VARS_CLOUD = {
     'D1toD4': r'/kaggle/input/stage4-d1tod4-stable',
     'D2toD4': r'/kaggle/input/stage4-d2tod4-dataset-stable',
     'D3toD4': r'/kaggle/input/stage4-d3tod4-dataset-stable',
-
-    'test': r'/kaggle/working/test',
 
     'dsCls_weights': r'/kaggle/input/stage4-dscls-weights/vgg16bn-dsCls-029-0.9777.pth',
 
@@ -61,6 +58,7 @@ VARS_CLOUD = {
         'G1to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D1toD4-037-0.8150.pth',
         'G2to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D2toD4-044-0.7050.pth',
         'G3to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D3toD4-039-0.5250.pth',
+        'G4to4': r'/kaggle/input/stage4-g4to4/netG_A2B-D4toD4-16-1.5909.pth',
 
         'Res34D1': r'/kaggle/input/stage4-resnet34-baseweights/resNet34-D1-015-0.9437.pth',
         'Res34D2': r'/kaggle/input/stage4-resnet34-baseweights/resNet34-D2-015-0.9021.pth',
