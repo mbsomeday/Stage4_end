@@ -101,7 +101,6 @@ if __name__ == '__main__':
     org_ds_name = opts.org_ds_name
     txt_name = opts.txt_name
     gen_image_save_dir = opts.gen_image_save_dir
-    batch_size = opts.batch_size
 
     if var_opt == 'CLOUD':
         runOn = VARS_CLOUD
