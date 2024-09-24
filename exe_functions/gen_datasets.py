@@ -71,7 +71,10 @@ def gen_biased_image(runOn, gen_model, org_ds_name, txt_name, gen_image_save_dir
                 os.makedirs(save_dir_path)
 
             if txt_name == 'augmentation_train.txt':
-                save_name = os.path.join(gen_image_save_dir, 'augmentation_train', obj_cls, individual_name)
+                augTrain_dir = os.path.join(gen_image_save_dir, 'augmentation_train')
+                if not os.path.exists(augTrain_dir):
+                    os.mkdir(augTrain_dir)
+                save_name = os.path.join(augTrain_dir, obj_cls, individual_name)
             else:
                 save_name = os.path.join(save_dir_path, individual_name)
 
