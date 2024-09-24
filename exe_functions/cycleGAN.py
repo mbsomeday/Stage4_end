@@ -45,21 +45,23 @@ def reload_weights(model, weights_path):
     model.to(DEVICE)
     return model
 
-def load_optimizer_loss(loaded_optimizer, weights_path, key_opt, key_loss, get_start_epoch=False):
+def load_optimizer_loss(loaded_optimizer, weights_path, key_opt, key_loss=None, get_start_epoch=False):
     checkpoints = torch.load(weights_path, map_location=torch.device(DEVICE))
     loaded_optimizer.load_state_dict(checkpoints[key_opt])
     for state in loaded_optimizer.state.values():
         for k, v in state.items():
             if isinstance(v, torch.Tensor):
                 state[k] = v.cuda()
-    loaded_loss = checkpoints[key_loss]
+
+
     if get_start_epoch:
         start_epoch = checkpoints['epoch']
+        loaded_loss = checkpoints[key_loss]
         loss_D_A = checkpoints['loss_D_A']
         loss_D_B = checkpoints['loss_D_B']
         return loaded_optimizer, loaded_loss, loss_D_A, loss_D_B, start_epoch
     else:
-        return loaded_optimizer, loaded_loss
+        return loaded_optimizer
 
 def reload(preTrainedWeights):
     # 先确定各个模型的权重
@@ -89,8 +91,8 @@ def reload(preTrainedWeights):
     optimizer_G, loss_G, loss_D_A, loss_D_B, start_epoch = load_optimizer_loss(optimizer_G, netG_A2B_weights,
                                                                               key_opt='optimizer_G', key_loss='loss_G',
                                                                               get_start_epoch=True)
-    optimizer_D_A = load_optimizer_loss(optimizer_D_A, netD_A_weights, key_opt='optimizer_D_A', key_loss='loss_D_A', get_start_epoch=False)
-    optimizer_D_B = load_optimizer_loss(optimizer_D_B, netD_B_weights, key_opt='optimizer_D_B', key_loss='loss_D_B', get_start_epoch=False)
+    optimizer_D_A = load_optimizer_loss(optimizer_D_A, netD_A_weights, key_opt='optimizer_D_A', key_loss=None, get_start_epoch=False)
+    optimizer_D_B = load_optimizer_loss(optimizer_D_B, netD_B_weights, key_opt='optimizer_D_B', key_loss=None, get_start_epoch=False)
 
     optimizers = [optimizer_G, optimizer_D_A, optimizer_D_B]
     losses = [loss_G, loss_D_A, loss_D_B]
