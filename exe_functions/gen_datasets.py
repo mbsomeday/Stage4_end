@@ -14,7 +14,7 @@ from cv_models import DEVICE, VARS_LOCAL, VARS_CLOUD
 from dataset.dataset import pedCls_Dataset
 
 
-def gen_biased_image(runOn, gen_model, org_ds_name, txt_name, gen_image_save_dir):
+def gen_biased_image(runOn, gen_model, org_ds_name, txt_name, batch_size, gen_image_save_dir):
     '''
         将 D1,D2,D3 转换为 D4
     :param gen_weights_path: 训练好的 image transfer 的 generator
@@ -40,7 +40,7 @@ def gen_biased_image(runOn, gen_model, org_ds_name, txt_name, gen_image_save_dir
 
     # 加载 origin数据集的dataset
     org_dataset = pedCls_Dataset(runOn, ds_name_list=[org_ds_name], txt_name=txt_name)
-    org_loader = DataLoader(org_dataset, batch_size=1, shuffle=False)
+    org_loader = DataLoader(org_dataset, batch_size=batch_size, shuffle=False)
 
     with torch.no_grad():
         for images, labels, names in tqdm(org_loader):
@@ -83,6 +83,7 @@ def get_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--gen_model', type=str)
     parser.add_argument('--org_ds_name', type=str)
+    parser.add_argument('--batch_size', type=int, default=1)
     parser.add_argument('--txt_name', type=str, default='augmentation_train.txt')
     parser.add_argument('--running_on', type=str, default='CLOUD')
     parser.add_argument('--gen_image_save_dir', type=str)
@@ -101,6 +102,7 @@ if __name__ == '__main__':
     org_ds_name = opts.org_ds_name
     txt_name = opts.txt_name
     gen_image_save_dir = opts.gen_image_save_dir
+    batch_size = opts.batch_size
 
     if var_opt == 'CLOUD':
         runOn = VARS_CLOUD
@@ -109,6 +111,7 @@ if __name__ == '__main__':
 
     gen_biased_image(runOn=runOn, gen_model=gen_model,
                      org_ds_name=org_ds_name, txt_name=txt_name,
+                     batch_size=batch_size,
                      gen_image_save_dir=gen_image_save_dir
                      )
 
