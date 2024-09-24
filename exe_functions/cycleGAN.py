@@ -87,8 +87,8 @@ def reload(preTrainedWeights):
     optimizer_G, loss_G, start_epoch = load_optimizer_loss(optimizer_G, netG_A2B_weights,
                                                       key_opt='optimizer_G', key_loss='loss_G',
                                                       get_start_epoch=True)
-    optimizer_D_A, loss_D_A = load_optimizer_loss(optimizer_D_A, netD_A, key_opt='optimizer_D_A', key_loss='loss_D_A', get_start_epoch=False)
-    optimizer_D_B, loss_D_B = load_optimizer_loss(optimizer_D_B, netD_B, key_opt='optimizer_D_B', key_loss='loss_D_B', get_start_epoch=False)
+    optimizer_D_A, loss_D_A = load_optimizer_loss(optimizer_D_A, netD_A_weights, key_opt='optimizer_D_A', key_loss='loss_D_A', get_start_epoch=False)
+    optimizer_D_B, loss_D_B = load_optimizer_loss(optimizer_D_B, netD_B_weights, key_opt='optimizer_D_B', key_loss='loss_D_B', get_start_epoch=False)
 
     optimizers = [optimizer_G, optimizer_D_A, optimizer_D_B]
     losses = [loss_G, loss_D_A, loss_D_B]
@@ -105,22 +105,6 @@ def reload(preTrainedWeights):
 pretrained = False
 pool_size = 50
 EPOCHS = 100
-
-def get_opt():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--batch_size', type=int, default=2)
-    parser.add_argument('--ds_name_list', nargs='+', default=['D4', 'D4'])
-    parser.add_argument('--save_base_dir', type=str, default=r'/kaggle/working/model')
-    parser.add_argument('--save_counter', type=str, default=r'/kaggle/working')
-    parser.add_argument('--var_opt', type=str, default='CLOUD')
-    parser.add_argument('--preTrainedWeights', nargs='+', default=[])
-    parser.add_argument('--get_num_train', type=int, default=5000)
-
-
-
-    args = parser.parse_args()
-
-    return args
 
 # ------------------------ 加载模型 ------------------------
 
@@ -214,7 +198,19 @@ def train(runOn, ds_name_list, save_base_dir, save_counter, preTrainedWeights, g
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
 
+def get_opt():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--batch_size', type=int, default=2)
+    parser.add_argument('--ds_name_list', nargs='+', default=['D4', 'D4'])
+    parser.add_argument('--save_base_dir', type=str, default=r'/kaggle/working/model')
+    parser.add_argument('--save_counter', type=str, default=r'/kaggle/working')
+    parser.add_argument('--var_opt', type=str, default='CLOUD')
+    parser.add_argument('--preTrainedWeights', nargs='+', default=[])
+    parser.add_argument('--get_num_train', type=int, default=5000)
 
+    args = parser.parse_args()
+
+    return args
 
 if __name__ == '__main__':
     opts = get_opt()
