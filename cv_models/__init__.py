@@ -46,6 +46,7 @@ VARS_CLOUD = {
     'G4D1': r'/kaggle/input/stage4-g4d123/Stage4_G4D1_Stable',
     'G4D2': r'/kaggle/input/stage4-g4d123/Stage4_G4D2_Stable',
     'G4D3': r'/kaggle/input/stage4-g4d123/Stage4_G4D3_Stable',
+    'G4D3_V2': r'/kaggle/working/Stage4_G4D3',
 
     'dsCls_weights': r'/kaggle/input/stage4-dscls-weights/vgg16bn-dsCls-029-0.9777.pth',
 
