@@ -70,6 +70,9 @@ VARS_CLOUD = {
         # 多个数据集
         'D3_G4D3': r'/kaggle/input/stage4-trainonmultids/VGG16-D3G4D3-016-0.9246.pth',
 
+        # 在 G4 dataset 上训练的
+        'G4D3': r'/kaggle/input/stage4-trainongentod4-weights-stable/VGG16-G4D3-028-0.9239.pth',
+
         'Res34D1': r'/kaggle/input/stage4-resnet34-baseweights/resNet34-D1-015-0.9437.pth',
         'Res34D2': r'/kaggle/input/stage4-resnet34-baseweights/resNet34-D2-015-0.9021.pth',
         'Res34D3': r'/kaggle/input/stage4-resnet34-baseweights/resNet34-D3-014-0.8933.pth',
