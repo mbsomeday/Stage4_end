@@ -38,10 +38,10 @@ VARS_CLOUD = {
     'D3': r'/kaggle/input/stage4-d3-ecpnight-7augs',
     'D4': r'/kaggle/input/stage4-d4-7augs',
 
-    'D1toD4': r'/kaggle/input/stage4-d1tod4-dataset-stable',
+    'D1toD4': r'/kaggle/input/stage4-d1tod4-stable',
     'D2toD4': r'/kaggle/input/stage4-d2tod4-dataset-stable',
     'D3toD4': r'/kaggle/input/stage4-d3tod4-dataset-stable',
-    'D4toD4': r'/kaggle/input/stage4-d4tod4-dataset-stable',
+    'D4toD4': r'/kaggle/input/stage4-d4tod4-stable',
 
     'G4D1': r'/kaggle/input/stage4-g4d1234/Stage4_G4D1_Stable',
     'G4D2': r'/kaggle/input/stage4-g4d1234/Stage4_G4D2_Stable',
