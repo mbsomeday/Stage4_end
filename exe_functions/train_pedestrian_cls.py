@@ -17,7 +17,7 @@ from dataset.dataset import pedCls_Dataset
 def get_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--ds_name_list', nargs='+', default=['D4toD4'])
-    parser.add_argument('--batch_size', type=int, default=64)
+    parser.add_argument('--batch_size', type=int, default=4)
     parser.add_argument('--var_opt', type=str, default='CLOUD')
     parser.add_argument('--model_name', type=str, default='VGG16')
     parser.add_argument('--model_save_dir', type=str)
