@@ -75,7 +75,7 @@ VARS_CLOUD = {
 
         # -------------------- Train on Multi DS  --------------------
         'D1_G4D1': r'/kaggle/input/stage4-weights-di-g4di/VGG16-D1G4D1-008-0.9637.pth',
-        'D2_G4D2': r'/kaggle/input/stage4-weights-di-g4di/VGG16-D2G4D2-015-0.9163',
+        'D2_G4D2': r'/kaggle/input/stage4-weights-di-g4di/VGG16-D2G4D2-015-0.9163.pth',
         'D3_G4D3': r'/kaggle/input/stage4-weights-di-g4di/VGG16-D3G4D3-016-0.9246.pth',
 
 
