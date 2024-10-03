@@ -13,7 +13,7 @@ def get_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--ds_name_list', nargs='+', default=['D4'])
     parser.add_argument('--txt_name', type=str, default='test.txt')
-    parser.add_argument('--model_weights', type=str, default='temp')
+    parser.add_argument('--model_weights', type=str, default='')
     parser.add_argument('--batch_size', type=int, default=4)
     parser.add_argument('--var_opt', type=str, default='LOCAL')
 
