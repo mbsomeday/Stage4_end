@@ -51,8 +51,6 @@ VARS_CLOUD = {
     'dsCls_weights': r'/kaggle/input/stage4-dscls-weights/vgg16bn-dsCls-029-0.9777.pth',
 
     'weights': {
-        'temp24': r'/kaggle/input/stage4-ds-temp/vgg16bn-G2D2-024-0.9354.pth',
-        'temp25': r'/kaggle/input/stage4-ds-temp/vgg16bn-G2D2-025-0.9304.pth',
 
         # -------------------- Baseline results --------------------
         'D1': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D1-014-0.9740.pth',
@@ -67,8 +65,8 @@ VARS_CLOUD = {
 
         # -------------------- Train on GiDi  --------------------
         'G1D1': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G1D1-006-0.9589.pth',
-        'G2D2': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G1D2-025-0.9304.pth',
-        'G2D3': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G2D3-047-0.9378.pth',
+        'G2D2': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G2D2-025-0.9304.pth',
+        'G3D3': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G3D3-047-0.9378.pth',
         'G4D4': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G4D4-030-0.9498.pth',
 
         # -------------------- Train on G4Di  --------------------
