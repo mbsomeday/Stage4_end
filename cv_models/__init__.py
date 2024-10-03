@@ -51,7 +51,7 @@ VARS_CLOUD = {
     'dsCls_weights': r'/kaggle/input/stage4-dscls-weights/vgg16bn-dsCls-029-0.9777.pth',
 
     'weights': {
-        # -------------------- baseline results --------------------
+        # -------------------- Baseline results --------------------
         'D1': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D1-014-0.9740.pth',
         'D2': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D2-025-0.9124.pth',
         'D3': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D3-025-0.9303.pth',
@@ -62,31 +62,30 @@ VARS_CLOUD = {
         'Res34D3': r'/kaggle/input/stage4-resnet34-baseweights/resNet34-D3-014-0.8933.pth',
         'Res34D4': r'/kaggle/input/stage4-resnet34-baseweights/resNet34-D4-018-0.9330.pth',
 
-        # -------------------- Train on Generated DS --------------------
+        # -------------------- Train on GiDi  --------------------
+        'G1D1': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G1D1-006-0.9589.pth',
+        'G2D2': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G1D2-025-0.9304.pth',
+        'G2D3': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G2D3-047-0.9378.pth',
+        'G4D4': r'/kaggle/input/stage4-weights-gidi/vgg16bn-G4D4-030-0.9498.pth',
+
+        # -------------------- Train on G4Di  --------------------
+        'G4D1': r'/kaggle/input/stage4-weights-g4di/VGG16-G4D1-028-0.9652.pth',
+        'G4D2': r'/kaggle/input/stage4-weights-g4di/VGG16-G4D2-008-0.9117.pth',
+        'G4D3': r'/kaggle/input/stage4-weights-g4di/VGG16-G4D3-028-0.9239.pth',
+
+        # -------------------- Train on Multi DS  --------------------
+        'D1_G4D1': r'/kaggle/input/stage4-weights-di-g4di/VGG16-D1G4D1-008-0.9637.pth',
+        'D2_G4D2': r'/kaggle/input/stage4-weights-di-g4di/VGG16-D2G4D2-015-0.9163',
+        'D3_G4D3': r'/kaggle/input/stage4-weights-di-g4di/VGG16-D3G4D3-016-0.9246.pth',
 
 
+        # un organized
         'D123': r'/kaggle/input/stage4-temp-d123/VGG16-D1D2D3-021-0.9731.pth',
-
-        'G1D1': r'/kaggle/input/stage4-trainongentod4-weights-stable/vgg16bn-G1D1-006-0.9589.pth',
-        'G2D2': r'/kaggle/input/stage4-trainongentod4-weights-stable/vgg16bn-G1D2-025-0.9304.pth',
-        'G2D3': r'/kaggle/input/stage4-trainongentod4-weights-stable/vgg16bn-G2D3-047-0.9378.pth',
-        'G4D4': r'/kaggle/input/stage4-trainongentod4-weights-stable/vgg16bn-G4D4-030-0.9498.pth',
-
-        'G2D2_V2': r'/kaggle/input/stage4-temp-g2d2/vgg16bn-G2D2-024-0.9354.pth',
 
         'G1to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D1toD4-037-0.8150.pth',
         'G2to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D2toD4-044-0.7050.pth',
         'G3to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D3toD4-039-0.5250.pth',
         'G4to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A2B-D4toD4-16-1.5909.pth',
-
-        # 多个数据集
-        'D3_G4D3': r'/kaggle/input/stage4-trainonmultids/VGG16-D3G4D3-016-0.9246.pth',
-        'D1_G4D1': r'/kaggle/input/stage4-trainonmultids/VGG16-D1G4D1-008-0.9637.pth',
-
-        # 在 G4 dataset 上训练的
-        'G4D1': r'/kaggle/input/stage4-trainongentod4-weights-stable/VGG16-G4D1-028-0.9652.pth',
-        'G4D2': r'/kaggle/input/stage4-trainongentod4-weights-stable/VGG16-G4D2-008-0.9117.pth',
-        'G4D3': r'/kaggle/input/stage4-trainongentod4-weights-stable/VGG16-G4D3-028-0.9239.pth',
 
     }
 }
