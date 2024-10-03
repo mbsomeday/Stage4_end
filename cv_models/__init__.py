@@ -51,6 +51,9 @@ VARS_CLOUD = {
     'dsCls_weights': r'/kaggle/input/stage4-dscls-weights/vgg16bn-dsCls-029-0.9777.pth',
 
     'weights': {
+        'temp24': r'/kaggle/input/stage4-ds-temp/vgg16bn-G2D2-024-0.9354.pth',
+        'temp25': r'/kaggle/input/stage4-ds-temp/vgg16bn-G2D2-025-0.9304.pth',
+
         # -------------------- Baseline results --------------------
         'D1': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D1-014-0.9740.pth',
         'D2': r'/kaggle/input/stage4-baseline-weights/vgg16bn-D2-025-0.9124.pth',
@@ -78,14 +81,17 @@ VARS_CLOUD = {
         'D2_G4D2': r'/kaggle/input/stage4-weights-di-g4di/VGG16-D2G4D2-015-0.9163.pth',
         'D3_G4D3': r'/kaggle/input/stage4-weights-di-g4di/VGG16-D3G4D3-016-0.9246.pth',
 
-
-        # un organized
-        'D123': r'/kaggle/input/stage4-temp-d123/VGG16-D1D2D3-021-0.9731.pth',
-
+        # -------------------- 4 Generators  --------------------
         'G1to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D1toD4-037-0.8150.pth',
         'G2to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D2toD4-044-0.7050.pth',
         'G3to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A-D3toD4-039-0.5250.pth',
         'G4to4': r'/kaggle/input/stage4-tod4generator-weights/netG_A2B-D4toD4-16-1.5909.pth',
+
+
+        # un organized
+        'D123': r'/kaggle/input/stage4-temp-d123/VGG16-D1D2D3-021-0.9731.pth',
+
+
 
     }
 }
