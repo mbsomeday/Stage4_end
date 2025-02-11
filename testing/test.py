@@ -46,6 +46,7 @@ def datasetCls(runOn, ds_name_list, ds_label_list, txt_name, opt_dict):
     print(f'model: {ds_weights_path}')
     print(f'batch_size: {batch_size}')
     print('Total samples:', len(test_dataset))
+    print(f'Running on {DEVICE}')
 
     # 开始检验
     correct_num = 0
@@ -131,8 +132,9 @@ def plot_cm(y_true, y_pred, label_names, title='Confusion Matrix'):
     plt.title(title)
     plt.ylabel('Label')
     plt.xlabel('Prediction')
+    plt.savefig(title + '.jpg')
     plt.show()
-    plt.savefig(title+'.jpg')
+
 
 # def plot_cm(cm):
 #
