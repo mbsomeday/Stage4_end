@@ -131,6 +131,7 @@ def plot_cm(y_true, y_pred, label_names, title='Confusion Matrix'):
     plt.ylabel('Label')
     plt.xlabel('Prediction')
     plt.show()
+    plt.savefig('cm.jpg')
 
 # def plot_cm(cm):
 #
