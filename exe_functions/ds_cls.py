@@ -5,8 +5,11 @@ curPath = os.path.abspath(os.path.dirname(__file__))
 root_path = os.path.split(curPath)[0]
 sys.path.append(root_path)
 
+
+
 from testing.test import datasetCls
 from cv_models import VARS_LOCAL, VARS_CLOUD, DEVICE
+
 
 
 def get_opt():
@@ -15,6 +18,7 @@ def get_opt():
     parser.add_argument('--ds_label_list', nargs='+', type=int, default=[0, 1, 2, 3])
     parser.add_argument('--txt_name', type=str, default='test.txt')
     parser.add_argument('--batch_size', type=int, default=4)
+    parser.add_argument('--cm_title', type=str, default='Confusion Matrix')
     parser.add_argument('--var_opt', type=str, default='CLOUD')
 
     args = parser.parse_args()
@@ -35,7 +39,8 @@ else:
     runOn = VARS_LOCAL
 
 opt_dict = {
-    'batch_size': opts.batch_size
+    'batch_size': opts.batch_size,
+    'cm_title': opts.cm_title
 }
 
 print(' ---------- Setting Info Start ----------')
