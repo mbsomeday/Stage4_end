@@ -67,7 +67,7 @@ def datasetCls(runOn, ds_name_list, ds_label_list, txt_name, opt_dict):
             y_true.extend(labels.cpu().numpy())
 
     test_accuracy = correct_num / len(test_dataset)
-    cm_title = 'CM on ' + str(cm_title)
+    cm_title = 'CM on ' + str(cm_title) + ' datasets'
     plot_cm(y_true=y_true, y_pred=y_pred, label_names=ds_name_list, title=cm_title)
     # cm = confusion_matrix(y_true, y_pred)
     bc = balanced_accuracy_score(y_true, y_pred)
