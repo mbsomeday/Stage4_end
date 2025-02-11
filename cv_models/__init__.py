@@ -10,6 +10,14 @@ VARS_LOCAL = {
     'D3': r'D:\my_phd\dataset\Stage3\D3_ECPNight',
     'D4': r'D:\my_phd\dataset\Stage3\D4_BDD100K',
 
+    'ReconsD1': r'E:\LDM\Org_Reconstruction\D1',
+    'ReconsD2': r'E:\LDM\Org_Reconstruction\D2',
+    'ReconsD3': r'E:\LDM\Org_Reconstruction\D3',
+    'ReconsD4': r'E:\LDM\Org_Reconstruction\D4',
+
+    'AE1D2': r'E:\LDM\AE1_Reconstruction\D2',
+    'AE1D3': r'E:\LDM\AE1_Reconstruction\D3',
+    'AE1D4': r'E:\LDM\AE1_Reconstruction\D4',
 
     'dsCls_weights': r'D:\my_phd\Model_Weights\Stage4\Baseline\vgg16bn-dsCls-029-0.9777.pth',
 
@@ -47,6 +55,15 @@ VARS_CLOUD = {
     'G4D2': r'/kaggle/input/stage4-ds-g4di/Stage4_G4D2_Stable',
     'G4D3': r'/kaggle/input/stage4-ds-g4di/Stage4_G4D3_Stable',
     'G4D4': r'/kaggle/input/stage4-ds-g4di/Stage4_G4D4_Stable',
+
+    'ReconsD1': r'/kaggle/input/stage5-dataset-orgrecons/D1_Recon/D1',
+    'ReconsD2': r'/kaggle/input/stage5-dataset-orgrecons/D2_Recons/D2',
+    'ReconsD3': r'/kaggle/input/stage5-dataset-orgrecons/D3_Recons/D3',
+    'ReconsD4': r'/kaggle/input/stage5-dataset-orgrecons/D4_Recons/D4',
+
+    'AE1D2': r'/kaggle/input/stage5-dataset-ae1recons/AE1D2_test/D2',
+    'AE1D3': r'/kaggle/input/stage5-dataset-ae1recons/AE1D3_test/D3',
+    'AE1D4': r'/kaggle/input/stage5-dataset-ae1recons/AE1D4_test/D4',
 
     'dsCls_weights': r'/kaggle/input/stage4-dscls-weights/vgg16bn-dsCls-029-0.9777.pth',
 
